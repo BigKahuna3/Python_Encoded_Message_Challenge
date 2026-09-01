@@ -51,12 +51,11 @@ def get_biggest_xy_coordinate(xory):
     return biggestNumber + 1
                     
 if __name__ == "__main__":
-    # Example usage
-    example_url = "https://docs.google.com/document/d/e/2PACX-1vTMOmshQe8YvaRXi6gEPKKlsC6UpFJSMAk4mQjLm_u1gmHdVVTaeh7nBNFBRlui0sTZ-snGwZM4DBCT/pub"
+    doc_url = "https://docs.google.com/document/d/e/2PACX-1vTMOmshQe8YvaRXi6gEPKKlsC6UpFJSMAk4mQjLm_u1gmHdVVTaeh7nBNFBRlui0sTZ-snGwZM4DBCT/pub"
     
     try:
         parser = DocParser()
-        content = read_doc(example_url)
+        content = read_doc(doc_url)
         parser.feed(content)
         xBiggestNumber = get_biggest_xy_coordinate("x")
         yBiggestNumber = get_biggest_xy_coordinate("y")
