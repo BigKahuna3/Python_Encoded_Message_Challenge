@@ -47,10 +47,10 @@ def get_biggest_xy(xory):
         if row[axis].isdigit():
             if int(row[axis]) > biggest_number:
                 biggest_number = int(row[axis])
-    return biggest_number + 1
+    return biggest_number + 1 # +1 because x and y coords are 0 based
             
 if __name__ == "__main__":
-    url = "https://docs.google.com/document/d/2PACX-1vTMOmshQe8YvaRXi6gEPKKlsC6UpFJSMAk4mQjLm_u1gmHdVVTaeh7nBNFBRlui0sTZ-snGwZM4DBCT/pub"
+    url = "https://docs.google.com/document/d/e/2PACX-1vTMOmshQe8YvaRXi6gEPKKlsC6UpFJSMAk4mQjLm_u1gmHdVVTaeh7nBNFBRlui0sTZ-snGwZM4DBCT/pub"
     
     try:
         contents = get_doc(url)
@@ -60,10 +60,10 @@ if __name__ == "__main__":
         x_biggest_number = get_biggest_xy("x")
         y_biggest_number = get_biggest_xy("y")
         
-        for y in range(y_biggest_number,0,-1):
-            for x in range(x_biggest_number):
+        for y in range(y_biggest_number,0,-1): # count y backwards
+            for x in range(x_biggest_number):  # count x forwards
                 for row in columnTable:
-                    if row[0].isdigit() and row[2].isdigit():
+                    if row[0].isdigit() and row[2].isdigit(): # filter out header row
                         if int(row[0]) == x and int(row[2]) == y:
                             print(f"{row[1]}", end="")
             print("")
