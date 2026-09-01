@@ -8,10 +8,9 @@ def get_doc(url: str):
         ret = requests.get(url)
         ret.raise_for_status()
         return ret.text
-                
-    except requests.RequestException as e:
-        print(f"Error: HTTP Result {requests.Response.status_code()}; {str(e)}")
-        raise
+
+    except requests.exceptions.HTTPError as e:
+        raise RuntimeError(f"HTTP Error {e.response.status_code}: {str(e)}")
     
 class DocParser(HTMLParser):
     def __init__(self):
@@ -51,7 +50,7 @@ def get_biggest_xy(xory):
     return biggest_number + 1
             
 if __name__ == "__main__":
-    url = "https://docs.google.com/document/d/e/2PACX-1vTMOmshQe8YvaRXi6gEPKKlsC6UpFJSMAk4mQjLm_u1gmHdVVTaeh7nBNFBRlui0sTZ-snGwZM4DBCT/pub"
+    url = "https://docs.google.com/document/d/2PACX-1vTMOmshQe8YvaRXi6gEPKKlsC6UpFJSMAk4mQjLm_u1gmHdVVTaeh7nBNFBRlui0sTZ-snGwZM4DBCT/pub"
     
     try:
         contents = get_doc(url)
