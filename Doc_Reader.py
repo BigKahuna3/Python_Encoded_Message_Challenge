@@ -29,7 +29,7 @@ class DocParser(HTMLParser):
         if tag == "table":
             self.inTable -= 1
         if tag == "td":
-            self.inCell -+ 1
+            self.inCell -= 1
         if tag == "tr":
             columnTable.append(self.rowData)
             self.rowData = []
